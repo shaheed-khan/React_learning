@@ -1,20 +1,15 @@
 
 
 const App = () => {
-  function btnclick(){
-    console.log("button clicked")
+  function handleScroll(elem) {
+    console.log(elem.deltaY)
   }
-  function mousehover(){
-    console.log("Mouse hovered")
-  }
+   
   return (
-    <div className="nono">
-      <input onChange={
-        function(elem){
-          console.log("Value changed:", elem.target.value)
-        }
-      } type="text" placeholder="Enter your name"/>
-      <button onClick={btnclick}>CLICK HERE</button> <br />
+    <div onWheel={handleScroll} className="nono">
+     <div className="page1"></div>
+     <div className="page2"></div>
+     <div className="page3"></div>
     </div>
   )
 }
