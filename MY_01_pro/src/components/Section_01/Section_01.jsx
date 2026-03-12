@@ -1,6 +1,6 @@
 
 import Navbar from './Navbar'
-import Page1Containt from './page1Containt'
+import Page1Containt from './Page1Containt'
 
 const Section_01 = (props) => {
   return (

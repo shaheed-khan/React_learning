@@ -2,7 +2,11 @@
 
 const App = () => {
   function handleScroll(elem) {
-    console.log(elem.deltaY)
+    if (elem.deltaY > 0) {
+      console.log("upward scrolling",elem.deltaY);
+    } else{
+      console.log("downward scrolling",elem.deltaY);
+    }
   }
    
   return (
