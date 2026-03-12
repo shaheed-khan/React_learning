@@ -8,9 +8,13 @@ const App = () => {
     console.log("Mouse hovered")
   }
   return (
-    <div>
-      <button onClick={btnclick}>CLICK HEAR</button> <br />
-      <button onMouseEnter={mousehover}>hover your mouse</button>
+    <div className="nono">
+      <input onChange={
+        function(elem){
+          console.log("Value changed:", elem.target.value)
+        }
+      } type="text" placeholder="Enter your name"/>
+      <button onClick={btnclick}>CLICK HERE</button> <br />
     </div>
   )
 }
