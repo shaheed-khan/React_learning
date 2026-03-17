@@ -1,16 +1,14 @@
 
+import { useState } from 'react'
 const App = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('form submitted')
+  const [num, setNum] = useState({user:"sarthak", age: 20})
+  const handleClick = () => {
+    setNum(prev=>({...prev, age: 21}))    
   }
-  
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder='Enter your name' /> <br />
-        <button type="submit">submit</button>
-      </form>
+      <h1> Name: {num.user} <br /> Age: {num.age}</h1>
+      <button onClick={handleClick}>Click me</button>
     </div>
   )
 }
