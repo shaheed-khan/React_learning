@@ -3,7 +3,7 @@ import { useState } from 'react'
 const App = () => {
   const [num, setNum] = useState({user:"sarthak", age: 20})
   const handleClick = () => {
-    setNum(prev=>({...prev, age: 21}))    
+    setNum(prev=>({...prev, age: prev.age + 1}))    
   }
   return (
     <div>

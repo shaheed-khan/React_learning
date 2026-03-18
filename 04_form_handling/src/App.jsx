@@ -2,7 +2,7 @@
 const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('form submitted')
+    console.log('form submitted',e.target[0].value)
   }
   
   return (
