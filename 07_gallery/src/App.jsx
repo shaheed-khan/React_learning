@@ -1,38 +1,60 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
+import Card from './Components/Card'
 
 const App = () => {
 
 const [userData, setUserData] = useState([])
 
+const [index, setindex] = useState(1)
+
   const getData = async () => {
-   const response = await axios.get("https://picsum.photos/v2/list?page=2&limit=30")
+   const response = await axios.get(`https://picsum.photos/v2/list?page=${index}&limit=30`)
    setUserData(response.data)
   }
   useEffect( function() {
     getData()
-  }, [])
+  }, [index])
 
-  let printuserData = <h2 className='text-gray-500 font-bold'>No data available</h2>
+  let printuserData = <h2 className='text-gray-500 font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>Loading.....</h2>
 
   if(userData.length > 0){
      printuserData = userData.map(function(elem,idx){
-      return <a href={elem.url} target='_blank'>
-         <div>
-           <div className='h-40 w-45 object-cover rounded-xl overflow-hidden ' >
-            <img className='h-full w-full'  src={elem.download_url} alt="img"  />
-          </div>
-          <h2 className='font-bold text-lg'>{elem.author}</h2>
-        </div>
-      </a>  
+      return <div  key={idx}> 
+      <Card  elem={elem} /> 
+      </div> 
     });
   }
+  if(userData.length > 0){
+
+  }
   return (
-    <div className='bg-black min-h-screen text-white '>
-     
-      <div className='flex flex-wrap gap-5 py-5 px-5 '>
+    <div className='bg-black overflow-auto h-screen p-4 text-white  '>
+      <div className='flex min-h-[80%] flex-wrap gap-5 p-2 '>
         {printuserData}
+      </div>
+      <div className='flex justify-center gap-6 items-center p-4   '>
+        <button 
+         onClick={()=>{
+          if(index > 1){
+             setindex(index-1)
+              setUserData([])
+          }
+        }}
+         className='bg-green-200 text-xl font-bold cursor-pointer active:scale-95 text-black rounded py-2 px-4'>
+          prev
+        </button>
+        <h2 className='font-medium text-2xl text-blue-300'>Page {index}</h2>
+        <button
+        onClick={()=>{
+          setUserData([])
+          setindex(index+1)
+        }
+        }
+         className='bg-green-200 text-xl font-bold cursor-pointer active:scale-95 text-black rounded py-2 px-4'>
+          next
+        </button>
       </div>
     </div>
   )
